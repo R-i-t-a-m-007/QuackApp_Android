@@ -1,0 +1,280 @@
+import React, { useEffect, useState, useCallback } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, ImageBackground, StatusBar, ActivityIndicator, SafeAreaView, Image, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter, useFocusEffect } from 'expo-router';
+
+export default function WorkerDash() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false); // To control the loading state
+  const [workerDetails, setWorkerDetails] = useState({});
+  const [error, setError] = useState("");
+
+  const fetchWorkerInfo = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://api.thequackapp.com/api/workers/me', {
+        method: 'GET',
+        credentials: 'include',
+      });
+      const data = await response.json();
+      
+
+      if (response.ok) {
+        setWorkerDetails(data); // Set the worker details from the response
+      } else {
+        setError(data.message || 'Unable to fetch worker data.');
+      }
+    } catch (error) {
+      // setError('Error fetching worker data');
+      console.error('Fetch error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Refresh the screen on focus
+  useFocusEffect(
+    useCallback(() => {
+      fetchWorkerInfo();
+    }, [])
+  );
+
+  return (
+    <>
+      <StatusBar barStyle="light-content" />
+      <SafeAreaView style={styles.safeArea}>
+        <ImageBackground
+          source={require('@/assets/images/main-bg.jpg')}
+          style={styles.container}
+          resizeMode="cover"
+        >
+          <LinearGradient
+            colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
+            style={styles.navbar}
+          >
+            <TouchableOpacity onPress={() => router.push('/login')}>
+              <Ionicons name="arrow-back" size={30} color="white" />
+            </TouchableOpacity>
+            <Text style={styles.navTitle}>Worker Dashboard</Text>
+            <Ionicons name="chatbubble-ellipses" size={24} color="white" onPress={()=>router.push('/workermessagescreen')} />
+          </LinearGradient>
+          <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
+          <View style={styles.profileSection}>
+          <View style={styles.profileImageContainer}>
+            <LinearGradient
+              colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
+              style={styles.profileImageGradient}
+            >
+              {workerDetails.image ? (
+                <Image
+                  source={{ uri: workerDetails.image }}
+                  style={styles.profileImage}
+                  resizeMode="cover"
+                />
+              ) : (
+                <Ionicons name="person" size={50} color="white" />
+              )}
+            </LinearGradient>
+          </View>
+
+            {loading ? (
+              <ActivityIndicator size="large" color="white" />
+            ) : error ? (
+              <Text style={styles.errorText}>{error}</Text>
+            ) : (
+              <>
+                <Text style={styles.greeting}>Hi, {workerDetails.name || 'Worker'}</Text>
+                <Text style={styles.welcome}>Welcome back</Text>
+              </>
+            )}
+          </View>
+
+          <View style={styles.cardSection}>
+            <View style={styles.cardRow}>
+              <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/taskscreen')}>
+                <LinearGradient
+                  colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
+                  style={styles.card}
+                >
+                  <Ionicons name="list" size={50} color="black" />
+                  <Text style={styles.cardText}>SHIFTS AVAILABLE</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.cardWrapper}
+                onPress={() => router.push('/calender')}
+              >
+                <LinearGradient
+                  colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
+                  style={styles.card}
+                >
+                  <Ionicons name="calendar" size={50} color="black" />
+                  <Text style={styles.cardText}>MY CALENDAR</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.cardRow}>
+              <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/mytasks')}>
+                <LinearGradient
+                  colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
+                  style={styles.card}
+                >
+                  <Ionicons name="briefcase" size={50} color="black" />
+                  < Text style={styles.cardText}>ACCEPTED SHIFTS</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/myshifts')}>
+                <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
+                  <Ionicons name="time" size={50} color="black" />
+                  <Text style={styles.cardText}>MY AVAILABILITY</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.centeredCardRow}>
+              <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/workeraccount')}>
+                <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
+                  <Ionicons name="person-circle" size={50} color="black" />
+                  <Text style={styles.cardText}>MY ACCOUNT</Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+          </View>
+
+          </ScrollView>
+        </ImageBackground>
+      </SafeAreaView>
+    </>
+  );
+}
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#f3ae0a',
+  },
+  container: {
+    flex: 1,
+    // alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    alignItems: 'center',
+    paddingBottom: 20,
+  },
+  navbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    padding: 20,
+    paddingTop: 10,
+  },
+  navTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  profileSection: {
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  profileImageContainer: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    marginBottom: 10,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  profileImageGradient: {
+    flex: 1,
+    borderRadius: 60,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  greeting: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  welcome: {
+    fontSize: 16,
+    color: 'white',
+  },
+  errorText: {
+    color: 'red',
+    fontSize: 16,
+  },
+  cardSection: {
+    width: '80%',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  cardRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+    width: '100%',
+  },
+  cardWrapper: {
+    width: '45%',
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  card: {
+    borderRadius: 10,
+    height: 130,
+    width: 130,
+    alignItems: 'center',
+    justifyContent: 'center',
+    elevation: 5,
+  },
+  cardText: {
+    marginTop: 10,
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 12,
+  },
+  cancelButton: {
+    backgroundColor: '#000',
+    borderRadius: 25,
+    paddingVertical: 15,
+    paddingHorizontal: 40,
+    alignItems: 'center',
+    width: '90%',
+    marginTop: 30,
+    elevation: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+  },
+  cancelButtonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  profileImage: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 60,
+  },
+  centeredCardRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: '100%',
+    marginBottom: 20,
+  },
+  
+});
