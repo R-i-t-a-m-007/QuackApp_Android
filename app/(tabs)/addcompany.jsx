@@ -124,7 +124,6 @@ export default function AddCompany() {
         ...formData,
         expoPushToken,
       };
-      console.log(finalData);
       
   
       const response = await fetch('https://api.thequackapp.com/api/companies/add', {
@@ -134,7 +133,6 @@ export default function AddCompany() {
       });
 
       const data = await response.json();
-      console.log("Logging the data : ", data);
   
       if (response.ok) {
         setIsSuccess(true);

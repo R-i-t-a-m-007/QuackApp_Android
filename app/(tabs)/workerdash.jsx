@@ -158,13 +158,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    // alignItems: 'center',
     backgroundColor: 'transparent',
-  },
-  scrollContainer: {
-    flexGrow: 1,
-    alignItems: 'center',
-    paddingBottom: 20,
   },
   navbar: {
     flexDirection: 'row',
@@ -172,16 +166,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '100%',
     padding: 20,
-    paddingTop: 10,
+    paddingTop: 20,
   },
   navTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
   },
+  scrollContainer: {
+    alignItems: 'center',
+    paddingTop: 10,
+  },
   profileSection: {
     alignItems: 'center',
     marginVertical: 20,
+    marginTop: 50,
   },
   profileImageContainer: {
     width: 120,
@@ -205,27 +204,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
-  welcome: {
-    fontSize: 16,
+  greetingcode: {
+    fontSize: 20,
+    fontWeight: 'bold',
     color: 'white',
   },
-  errorText: {
-    color: 'red',
-    fontSize: 16,
+  welcome: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
   },
   cardSection: {
-    width: '80%',
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 20,
   },
   cardRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     marginBottom: 20,
-    width: '100%',
+    gap:30
   },
   cardWrapper: {
-    width: '45%',
+    width: 150,
+    marginHorizontal: 10,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
@@ -235,7 +236,6 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
     height: 130,
-    width: 130,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 5,
@@ -244,37 +244,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 12,
-  },
-  cancelButton: {
-    backgroundColor: '#000',
-    borderRadius: 25,
-    paddingVertical: 15,
-    paddingHorizontal: 40,
-    alignItems: 'center',
-    width: '90%',
-    marginTop: 30,
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-  cancelButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 14,
+    textAlign: 'center',
   },
   profileImage: {
     width: '100%',
     height: '100%',
     borderRadius: 60,
   },
-  centeredCardRow: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    marginBottom: 20,
-  },
-  
 });

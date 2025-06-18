@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711836619242",
+    "project_id": "the-quackapp",
+    "storage_bucket": "the-quackapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711836619242:android:9567ebae59c79fe8ed2293",
+        "android_client_info": {
+          "package_name": "com.ritam2024.QuackApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3wfs6WsQK36a9kxuOHymy1pKkWeru8EA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

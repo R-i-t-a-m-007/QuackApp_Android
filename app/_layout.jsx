@@ -33,6 +33,7 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <StripeProvider publishableKey="pk_live_51R4fcdCYDOMuFCfFqAhGZMbYDfByHhXukLT6KeGiujcEj6RwmH1MR8kZ2IqdrY78YZC9tCETsiBkduqDGQ0ApPbC009Cz0KAog">
         <Stack>
+          <Stack.Screen name="login" options={{ headerShown: false }} />
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>

@@ -20,6 +20,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImageManipulator from 'expo-image-manipulator';
 
 
+
 export default function MyAccount() {
   const router = useRouter();
   const [userDetails, setUserDetails] = useState({});

@@ -19,7 +19,7 @@ export default function IndividualDash() {
       const data = await response.json();
 
       if (response.ok) {
-        setUserInfo(data.user); // Store the entire user object
+        setUserInfo(data.user);
       } else {
         setError(data.message || 'Unable to fetch user data.');
       }
@@ -27,7 +27,6 @@ export default function IndividualDash() {
       console.error('Fetch error:', error);
     } 
   };
-  
 
   useFocusEffect(
     useCallback(() => {
@@ -44,27 +43,18 @@ export default function IndividualDash() {
           style={styles.container}
           resizeMode="cover"
         >
-          <LinearGradient
-            colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-            style={styles.navbar}
-          >
+          <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.navbar}>
             <TouchableOpacity>
               <Ionicons name="person" size={26} color="white" onPress={() => router.push('/myaccount')} />
             </TouchableOpacity>
             <Text style={styles.navTitle}>Dashboard</Text>
-            <Ionicons name="chatbubble-ellipses" size={24} color="white" onPress={()=>router.push('/messages')} />
+            <Ionicons name="chatbubble-ellipses" size={24} color="white" onPress={() => router.push('/messages')} />
           </LinearGradient>
 
-          <ScrollView
-            contentContainerStyle={styles.scrollContainer}
-            showsVerticalScrollIndicator={false}
-          >
+          <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
             <View style={styles.profileSection}>
               <View style={styles.profileImageContainer}>
-                <LinearGradient
-                  colors={['#f3ae0a', '#f3830a']}
-                  style={styles.profileImageGradient}
-                >
+                <LinearGradient colors={['#f3ae0a', '#f3830a']} style={styles.profileImageGradient}>
                   {userInfo.image ? (
                     <Image source={{ uri: userInfo.image }} style={styles.profileImage} />
                   ) : (
@@ -79,27 +69,14 @@ export default function IndividualDash() {
 
             <View style={styles.cardSection}>
               <View style={styles.cardRow}>
-                <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/workerrequest')}
-                >
-                  <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/workerrequest')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="people" size={50} color="black" />
                     <Text style={styles.cardText}>Worker Requests</Text>
                   </LinearGradient>
                 </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/createjob')}
-                >
-                  <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/createjob')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="add-circle" size={50} color="black" />
                     <Text style={styles.cardText}>Create Job</Text>
                   </LinearGradient>
@@ -107,26 +84,14 @@ export default function IndividualDash() {
               </View>
 
               <View style={styles.cardRow}>
-                <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/workerlist')}
-                >
-                  <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/workerlist')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="list" size={50} color="black" />
                     <Text style={styles.cardText}>Worker List</Text>
                   </LinearGradient>
                 </TouchableOpacity>
-
-                <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/joblist')}>
-                <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/joblist')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="briefcase" size={50} color="black" />
                     <Text style={styles.cardText}>Job List</Text>
                   </LinearGradient>
@@ -134,26 +99,14 @@ export default function IndividualDash() {
               </View>
 
               <View style={styles.cardRow}>
-              <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/checkshift')}
-                >
-                  <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/checkshift')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="calendar" size={50} color="black" />
                     <Text style={styles.cardText}>Calendar</Text>
                   </LinearGradient>
                 </TouchableOpacity>
-                <TouchableOpacity
-                  style={styles.cardWrapper}
-                  onPress={() => router.push('/myaccount')}
-                >
-                  <LinearGradient
-                    colors={['#f3ae0a', '#f3ae0a', '#f3830a']}
-                    style={styles.card}
-                  >
+                <TouchableOpacity style={styles.cardWrapper} onPress={() => router.push('/myaccount')}>
+                  <LinearGradient colors={['#f3ae0a', '#f3ae0a', '#f3830a']} style={styles.card}>
                     <Ionicons name="person-circle" size={50} color="black" />
                     <Text style={styles.cardText}>My Account</Text>
                   </LinearGradient>
@@ -231,23 +184,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cardSection: {
-    width: '80%', // Adjusted width for better spacing
     alignItems: 'center',
     marginTop: 20,
   },
   cardRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 30,
-    width: '100%',
-  },
-  centeredCardRow: {
-    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 20,
+    gap:30
   },
   cardWrapper: {
-    width: 130,
-    marginHorizontal: 5, // Added margin for spacing
+    width: 150,
+    marginHorizontal: 10,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
@@ -266,10 +214,11 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: 14,
+    textAlign: 'center',
   },
   profileImage: {
     width: '100%',
     height: '100%',
     borderRadius: 60,
   },
-})
+});

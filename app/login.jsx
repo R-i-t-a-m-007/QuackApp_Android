@@ -55,12 +55,12 @@ export default function Login() {
             const userPackage = data.user.package;
 
             if (userPackage === 'Pro') {
-              router.replace('/prouserdash');
+              router.push('/prouserdash');
             } else if (userPackage === 'Basic') {
-              router.replace('/basicuserdash');
+              router.push('/basicuserdash');
             } else {
               // fallback if no valid package
-              router.replace('/dashboard');
+              router.push('/dashboard');
             }
             return;
           } else {
@@ -70,7 +70,7 @@ export default function Login() {
         }
 
         if (workerToken) {
-          router.replace('/workerdash');
+          router.push('/workerdash');
           return;
         }
 
@@ -177,7 +177,7 @@ export default function Login() {
     const checkWorkerLogin = async () => {
       const worker = await AsyncStorage.getItem('worker');
       if (worker) {
-        router.replace('/workerdash');
+        router.push('/workerdash');
       }
     };
   

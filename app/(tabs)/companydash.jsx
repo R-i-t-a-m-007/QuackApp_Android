@@ -143,26 +143,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'transparent',
   },
-  scrollContainer: {
-    alignItems: 'center',
-    paddingBottom: 20,
-  },
   navbar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
     padding: 20,
-    paddingTop: 10,
+    paddingTop: 20,
   },
   navTitle: {
     fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
   },
+  scrollContainer: {
+    alignItems: 'center',
+    paddingTop: 10,
+  },
   profileSection: {
     alignItems: 'center',
     marginVertical: 20,
+    marginTop: 50,
   },
   profileImageContainer: {
     width: 120,
@@ -197,21 +198,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cardSection: {
-    width: '80%',
     alignItems: 'center',
+    marginTop: 20,
   },
   cardRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginBottom: 20,
-    width: '100%',
-  },
-  centeredCardRow: {
-    alignItems: 'center',
-    marginBottom: 20,
+    gap:30
   },
   cardWrapper: {
-    width: 130,
+    width: 150,
+    marginHorizontal: 10,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
@@ -221,7 +219,6 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 10,
     height: 130,
-    width: 130,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 5,
@@ -230,7 +227,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     color: 'black',
     fontWeight: 'bold',
-    fontSize: 12,
+    fontSize: 14,
     textAlign: 'center',
   },
   profileImage: {

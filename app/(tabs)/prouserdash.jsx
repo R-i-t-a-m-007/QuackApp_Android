@@ -219,8 +219,6 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   scrollContainer: {
-    flexGrow: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -262,23 +260,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   cardSection: {
-    width: '80%', // Adjusted width for better spacing
     alignItems: 'center',
     marginTop: 20,
   },
   cardRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 30,
-    width: '100%',
-  },
-  centeredCardRow: {
-    alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 20,
+    gap:30
   },
   cardWrapper: {
-    width: 130,
-    marginHorizontal: 5, // Added margin for spacing
+    width: 150,
+    marginHorizontal: 10,
     elevation: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
@@ -297,11 +290,11 @@ const styles = StyleSheet.create({
     color: 'black',
     fontWeight: 'bold',
     fontSize: 14,
-    textAlign:'center',
+    textAlign: 'center',
   },
   profileImage: {
     width: '100%',
     height: '100%',
     borderRadius: 60,
   },
-})
+});

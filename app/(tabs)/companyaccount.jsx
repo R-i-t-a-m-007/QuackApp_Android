@@ -106,7 +106,7 @@ export default function CompanyAccount() {
 
         if (res.ok) {
           Alert.alert('Success', 'Image uploaded successfully!');
-          fetchCompanyInfo(); // Refresh worker info to get the updated image
+          fetchCompanyInfo(); // Refresh worker info to get the updated image  
         } else {
           console.error('Error uploading image:', data.message);
           Alert.alert('Error', data.message || 'Failed to upload image.');
