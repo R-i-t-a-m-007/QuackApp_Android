@@ -1,13 +1,14 @@
 import React, { useRef, useState } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet, FlatList,
-  ImageBackground, Image, ScrollView, Alert, StatusBar, Linking,
+  ImageBackground, Image, ScrollView, Alert, StatusBar, Linking, Dimensions
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as WebBrowser from 'expo-web-browser'; // ✅ Add this at the top
 
+const isTablet = Dimensions.get('window').width >= 568;
 
 const PackageScreen = () => {
   const router = useRouter();
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: isTablet ? 70 : 40, // more space on tablet
   },
   logo: {
     width: 100,
